@@ -21,6 +21,7 @@ class CategoryCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Category')
+            ->setEntityLabelInPlural('Categories')
             ->setSearchFields(['name'])
             ->setDefaultSort(['name' => 'ASC'])
             ;
