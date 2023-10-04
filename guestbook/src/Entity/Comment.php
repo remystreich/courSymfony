@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\TimestampableTrait;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\HasLifecycleCallbacks]
 class Comment implements \Stringable
 {
+    use TimestampableTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -24,15 +26,13 @@ class Comment implements \Stringable
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
-
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Conference $conference = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $photoFilename = null;
+
 
     public function __toString(): string
     {
@@ -80,17 +80,6 @@ class Comment implements \Stringable
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
 
     public function getConference(): ?Conference
     {
@@ -116,9 +105,5 @@ class Comment implements \Stringable
         return $this;
     }
 
-    #[ORM\PrePersist]
-    public function setCreatedAtValue()
-    {
-        $this->createdAt = new \DateTimeImmutable();
-    }
+
 }

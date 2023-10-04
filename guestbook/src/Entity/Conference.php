@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Trait\TimestampableTrait;
 use App\Repository\ConferenceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -11,8 +12,10 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[ORM\Entity(repositoryClass: ConferenceRepository::class)]
 #[UniqueEntity('slug')]
+#[ORM\HasLifecycleCallbacks]
 class Conference implements \Stringable
 {
+    use TimestampableTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -33,10 +36,12 @@ class Conference implements \Stringable
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     private ?string $slug = null;
 
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
     }
+
 
     public function __toString(): string
     {
