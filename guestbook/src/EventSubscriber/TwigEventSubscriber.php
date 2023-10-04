@@ -11,9 +11,11 @@ use Twig\Environment;
 class TwigEventSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private Environment $twig,
+        private Environment          $twig,
         private ConferenceRepository $conferenceRepository
-    ) { }
+    )
+    {
+    }
 
     public function onKernelController(ControllerEvent $event): void
     {
