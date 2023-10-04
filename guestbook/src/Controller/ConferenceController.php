@@ -14,12 +14,12 @@ use Symfony\Component\HttpFoundation\Request;
 class ConferenceController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
-    public function index(): Response
+    public function index(ConferenceRepository $conferenceRepository): Response
     {
         return $this->render('conference/index.html.twig');
     }
 
-    #[Route('/conference/{id}', name: 'conference')]
+    #[Route('/conference/{slug}', name: 'conference')]
     public function show(Request $request, Environment $twig, Conference $conference, CommentRepository $commentRepository): Response
     {
         $offset = max(0, $request->query->getInt('offset', 0));
