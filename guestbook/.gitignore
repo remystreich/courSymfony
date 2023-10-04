@@ -5,8 +5,10 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
+/public/uploads/photos
 /var/
 /vendor/
+
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
@@ -18,4 +20,3 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-/public/uploads/photos/
