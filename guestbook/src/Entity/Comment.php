@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Comment implements \Stringable
 {
     #[ORM\Id]
@@ -35,7 +36,7 @@ class Comment implements \Stringable
 
     public function __toString(): string
     {
-        return (string) $this->getEmail();
+        return (string)$this->getEmail();
     }
 
     public function getId(): ?int
@@ -113,5 +114,11 @@ class Comment implements \Stringable
         $this->photoFilename = $photoFilename;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTimeImmutable();
     }
 }
