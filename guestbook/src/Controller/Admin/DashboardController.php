@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Admin;
 use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Conference;
@@ -34,9 +35,11 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'homepage');
+        yield MenuItem::linkToCrud('Admin', 'fas fa-user', Admin::class);
         yield MenuItem::linkToCrud('Conferences', 'fas fa-map-marker-alt', Conference::class);
         yield MenuItem::linkToCrud('Comments', 'fas fa-comments', Comment::class);
         yield MenuItem::linkToCrud('Product', 'fas fa-cube', Product::class );
         yield MenuItem::linkToCrud('Category', 'fas fa-paperclip', Category::class);
+
     }
 }
