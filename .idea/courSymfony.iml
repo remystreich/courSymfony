@@ -138,6 +138,8 @@
       <excludeFolder url="file://$MODULE_DIR$/guestbook/vendor/symfony/polyfill-uuid" />
       <excludeFolder url="file://$MODULE_DIR$/guestbook/vendor/symfony/uid" />
       <excludeFolder url="file://$MODULE_DIR$/guestbook/vendor/twig/intl-extra" />
+      <excludeFolder url="file://$MODULE_DIR$/guestbook/vendor/friendsofphp/php-cs-fixer" />
+      <excludeFolder url="file://$MODULE_DIR$/guestbook/vendor/phpstan/phpstan" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
