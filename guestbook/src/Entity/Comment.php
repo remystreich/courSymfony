@@ -126,5 +126,4 @@ class Comment implements \Stringable
         return $this;
     }
 
-
 }
